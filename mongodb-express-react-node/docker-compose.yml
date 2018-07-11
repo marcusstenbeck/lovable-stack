@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  web:
+    build: ./web
+    depends_on:
+      - api
+    volumes:
+      - ./web:/app
+    ports:
+      - 3000:3000
+  
+  api:
+    build: ./api
+    depends_on:
+      - db
+    volumes:
+      - ./api:/app
+    ports:
+      - 3001:3001
+  
+  db:
+    image: mongo:3.6
